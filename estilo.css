@@ -43,6 +43,7 @@ footer {
   justify-content: flex-end;
   flex-direction: column-reverse;
 }
+
 h1 {
   color: aliceblue;
 }
@@ -77,11 +78,12 @@ section#inicio {
     gap: 1.5rem;
   }
   .icones {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     background-color: #7b68ee;
     border-radius: 50%;
     margin-top: 1.5rem;
+    overflow: hidden;
   }
 
   .div_imagem {
@@ -98,7 +100,7 @@ section#inicio {
 section#sobre {
   display: flex;
   justify-content: center;
-  padding: 3rem 1rem;
+  padding: 1rem 1rem;
   .conteudo_sobre {
     display: flex;
     flex-direction: column;
@@ -119,11 +121,27 @@ section#sobre {
     /*Adicionei 'object-fit' para 
        garantir que a imagem não achate se não for um quadrado perfeito. */
     object-fit: cover;
+    /*puxei a foto com margin, sobrepondo o valor do gap de classe */
+    margin-top: -2.5rem;
   }
 }
 section#habilidades {
-  justify-content: center;
-  padding: 1rem 1rem;
+  background: #000814;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  align-items: center;
+  /*espaço entre o Título (H1) e as barras */
+  gap: 2rem;
+  .item_p {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
 }
 .ancora {
   text-decoration: none;
@@ -131,4 +149,95 @@ section#habilidades {
   color: aliceblue;
   font-size: 1.5rem;
   font-weight: 600;
+  display: inline-block;
+  padding: 0.3rem 2rem;
+  border-radius: 0.5rem;
+  background-color: #7b68ee;
+  transition: all 0.3 ease;
+  /*estilo para efeito do hover quando o mouse passar em cima*/
+  &:hover {
+    background-color: #5a4db8;
+    transform: translateY(-2px);
+  }
+}
+.estilo_rodape {
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  display: inline-block;
+  padding: 3rem;
+}
+.barra_habilidades {
+  background-color: aliceblue;
+  width: 100%;
+  height: 10px;
+  border-radius: 8px;
+  /* Garante que o preenchimento não saia das bordas arredondadas */
+  overflow: hidden;
+}
+.progresso {
+  background-color: #7b68ee;
+  height: 100%;
+  border-radius: 8px;
+  /*para a barra carregar com animação */
+  transition: width 1s ease-in-out;
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE & TABLET)
+========================================= */
+@media (max-width: 768px) {
+  /* Ajuste do Cabeçalho: Empilha a logo e o menu */
+  header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+
+    .lista {
+      flex-wrap: wrap; /* Permite que os links desçam de linha se faltar espaço */
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.2rem; /* Reduz um pouco o tamanho da fonte */
+    }
+  }
+
+  /* Ajuste da Secção Início: Empilha a foto e o texto */
+  section#inicio {
+    /* column-reverse coloca a foto em cima e o texto em baixo */
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 3rem 1rem;
+    gap: 3rem;
+
+    .div_textos {
+      max-width: 100%; /* O texto passa a ocupar 100% da largura do smartphone */
+      align-items: center; /* Centraliza os textos e botões */
+    }
+
+    .div_imagem .perfil {
+      max-width: 300px; /* Reduz a foto no smartphone */
+    }
+  }
+
+  /* Ajuste da Secção Sobre: Centralização e espaçamento */
+  section#sobre {
+    padding: 3rem 1rem;
+
+    .perfil2 {
+      margin-top: 0; /* Removemos aquela margem negativa agressiva para o smartphone */
+      height: 15rem; /* Diminuímos a foto um pouco */
+      width: 15rem;
+    }
+  }
+
+  /* Ajustes Gerais de Tipografia para não quebrar no ecrã pequeno */
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1rem;
+  }
 }
