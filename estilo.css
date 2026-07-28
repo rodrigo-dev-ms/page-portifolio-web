@@ -12,10 +12,14 @@ header {
   padding: 1rem 0.75rem;
 
   .logo {
-    width: 15.5rem;
-    height: 4rem;
-    border-radius: 1rem;
-    display: flex;
+    width: auto;
+    height: 5.5rem;
+    border-radius: 0.5rem;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  .logo:hover {
+    transform: scale(1.05); /* Leve expansão ao passar o mouse */
   }
   .lista {
     display: flex;
@@ -182,9 +186,61 @@ section#habilidades {
   /*para a barra carregar com animação */
   transition: width 1s ease-in-out;
 }
+/* =========================================
+  SEÇÃO CONTATO
+========================================= */
+section#contato {
+  background-color: #343a40; /* Intercalando a cor de fundo para dar contraste */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+  gap: 2rem;
+  text-align: center;
+}
+
+.box_contatos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  flex-wrap: wrap; /* Permite que os cards quebrem de linha se não houver espaço */
+  margin-top: 1.5rem;
+}
+
+.item_contato {
+  background-color: #000814;
+  border: 2px solid #7b68ee;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  /* Largura base do card, mas pode crescer para preencher o espaço */
+  flex: 1; 
+  min-width: 280px; 
+}
+
+.item_contato h2 {
+  font-size: 1.5rem;
+}
+
+.item_contato p {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.redes_links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 /* =========================================
-   RESPONSIVIDADE (MOBILE & TABLET)
+  RESPONSIVIDADE (MOBILE & TABLET)
 ========================================= */
 @media (max-width: 768px) {
   /* Ajuste do Cabeçalho: Empilha a logo e o menu */
@@ -229,7 +285,19 @@ section#habilidades {
       width: 15rem;
     }
   }
+  /* Ajuste da Secção Contato no Mobile */
+  section#contato {
+    padding: 3rem 1rem;
+  }
+  
+  .box_contatos {
+    flex-direction: column; /* Empilha os cards no celular */
+    align-items: center;
+  }
 
+  .item_contato {
+    width: 100%; /* Faz o card ocupar a largura total no celular */
+  }
   /* Ajustes Gerais de Tipografia para não quebrar no ecrã pequeno */
   h1 {
     font-size: 2rem;
