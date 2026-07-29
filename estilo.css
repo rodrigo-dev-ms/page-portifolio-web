@@ -4,6 +4,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
 header {
   background: #000814;
   display: flex;
@@ -31,6 +35,11 @@ header {
   .a {
     text-decoration: none;
     color: aliceblue;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  .a:hover {
+    transform: scale(1.05);
   }
 }
 
@@ -64,6 +73,10 @@ p {
   color: transparent;
   -webkit-text-stroke: 1px #7b68ee;
   font-weight: 300;
+  display: inline-block;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 section#inicio {
   background-color: #000814;
@@ -72,6 +85,7 @@ section#inicio {
   align-items: center;
   padding: 3rem 1rem;
   gap: 2rem;
+  contain: paint;
   .div_textos {
     max-width: 60%;
     display: flex;
@@ -81,13 +95,35 @@ section#inicio {
     /*o respiro uniforme de 1.5rem entre o h1, h2, p, botão e ícones */
     gap: 1.5rem;
   }
-  .icones {
-    width: 2rem;
-    height: 2rem;
+  .div_textos > div {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .div_textos > div a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.4rem;
     background-color: #7b68ee;
     border-radius: 50%;
-    margin-top: 1.5rem;
+    flex-shrink: 0;
     overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .div_textos > div a:hover {
+    transform: scale(1.05);
+  }
+  .icones {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: transparent;
+    border-radius: 0;
+    margin-top: 0;
   }
 
   .div_imagem {
@@ -105,6 +141,7 @@ section#sobre {
   display: flex;
   justify-content: center;
   padding: 1rem 1rem;
+  contain: paint;
   .conteudo_sobre {
     display: flex;
     flex-direction: column;
@@ -157,11 +194,10 @@ section#habilidades {
   padding: 0.3rem 2rem;
   border-radius: 0.5rem;
   background-color: #7b68ee;
-  transition: all 0.3 ease;
-  /*estilo para efeito do hover quando o mouse passar em cima*/
+  transition: transform 0.3s ease, background-color 0.3s ease;
   &:hover {
     background-color: #5a4db8;
-    transform: translateY(-2px);
+    transform: scale(1.05);
   }
 }
 .estilo_rodape {
@@ -239,6 +275,18 @@ section#contato {
   justify-content: center;
 }
 
+/* Animação de entrada ao rolar a página (ativada via script.js) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* =========================================
   RESPONSIVIDADE (MOBILE & TABLET)
 ========================================= */
@@ -289,14 +337,37 @@ section#contato {
   section#contato {
     padding: 3rem 1rem;
   }
-  
+
   .box_contatos {
-    flex-direction: column; /* Empilha os cards no celular */
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
   }
 
   .item_contato {
-    width: 100%; /* Faz o card ocupar a largura total no celular */
+    width: 100%;
+    min-width: unset;
+    padding: 1.5rem 1rem;
+  }
+
+  .ancora {
+    font-size: 1.1rem;
+    padding: 0.5rem 1.25rem;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .redes_links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .redes_links .ancora {
+    max-width: 100%;
   }
   /* Ajustes Gerais de Tipografia para não quebrar no ecrã pequeno */
   h1 {
